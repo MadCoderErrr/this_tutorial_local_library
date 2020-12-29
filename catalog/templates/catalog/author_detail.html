@@ -1,0 +1,17 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  {% if author %}
+    <h1>Author: {{ author.last_name }}, {{ author.first_name }}</h1>
+    <p>({{ author.date_of_birth }}-{{ author.date_of_death }})</p>
+    
+    <div style="margin-left:20px;margin-top:20px">
+        <h4>Books</h4>
+        {% for book in author.the_id %}
+        <a href="{% url 'book-detail' book.pk %}">{{ book.title }}</a>
+        <p>{{ book.summary }}</p>
+        {% endfor %}
+  {% else %}
+    <p>There's something wrong</p>
+  {% endif %}
+{% endblock %}

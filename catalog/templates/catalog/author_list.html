@@ -1,0 +1,16 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>Author List</h1>
+  <a href="{% url 'author-create' %}">Create/update authors?</a>
+  {% if author_list %}
+    <ul>
+        {% for author in author_list %}
+          <li>
+              <a href="{{ author.get_absolute_url }}">{{ author.last_name }}, {{ author.first_name }}  ({{ author.date_of_birth }}-{{ author.date_of_death }})</a>
+              <a href="{% url 'author-delete' author.pk %}"> --Delete?</a>
+          </li>
+        {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}
